@@ -31,7 +31,7 @@ class _LoginViewState extends State<LoginView> {
               children: <Widget>[
                 emailField(formBloc),
                 passwordField(formBloc),
-                buttonLogIn(formBloc),
+                buttonLogIn(formBloc, context),
                 optionsLogIn(context),
               ],
             ),

@@ -37,14 +37,21 @@ Widget passwordField(FormBloc formBloc) {
   );
 }
 
-Widget buttonLogIn(FormBloc formBloc) {
+Widget buttonLogIn(FormBloc formBloc, BuildContext context) {
   return StreamBuilder<bool>(
     stream: formBloc.submitValidForm,
     builder: (context, AsyncSnapshot<bool> snapshot) {
       return Padding(
         padding: const EdgeInsets.all(20.0),
         child: RaisedButton(
-          onPressed: snapshot.hasError ? null : formBloc.submit,
+          onPressed: snapshot.hasError
+              ? null
+              : () {
+                  if (formBloc.submit()) {
+                    print("passed");
+                    Navigator.pushNamed(context, '/calendar');
+                  }
+                },
           child: const Icon(Icons.arrow_forward),
           color: Colors.teal,
           clipBehavior: Clip.hardEdge,
